@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Agrivance</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <style>
+        /* Background Gradient Animation */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+            text-align: center;
+            background: linear-gradient(45deg, #3a7bd5, #3a6073, #6a11cb, #2575fc);
+            background-size: 300% 300%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        /* Navigation Bar */
+        nav {
+            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.7);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        /* Highlight Active Page */
+        nav ul li a.active {
+            background: #FFD700;  
+            color: #000;  
+            font-weight: bold;  
+            transform: scale(1.1);  
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 100px 20px 60px;
+            max-width: 1200px;
+            margin: auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .about-title {
+            font-size: 50px;
+            font-weight: bold;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-out;
+        }
+
+        .about-text {
+            font-size: 20px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: auto;
+            opacity: 0;
+            animation: fadeInText 3s ease-in-out 0.5s forwards;
+        }
+
+        /* Problem Statement Section */
+        .problem-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeInText 3s ease-in-out 0.5s forwards;
+        }
+
+        .problem-section h2 {
+            font-size: 30px;
+            color: #FFD700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .problem-section p {
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        /* Mission & Vision Section */
+        .mission-vision {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            animation: fadeInText 2s ease-in-out 1s forwards;
+        }
+
+        .mission, .vision {
+            width: 45%;
+            min-width: 300px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            transition: 0.4s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .mission:hover, .vision:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .mission h2, .vision h2 {
+            color: #FFD700;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            margin-top: 50px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            animation: fadeInText 2s ease-in-out 1s forwards;
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .testimonial {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.4s;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonial:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .testimonial p {
+            font-size: 16px;
+            color: #f7f7f7;
+        }
+
+        .testimonial h4 {
+            font-size: 18px;
+            color: #FFD700;
+            margin-top: 10px;
+        }
+
+        /* Achievements Section */
+        .achievements-section {
+            margin-top: 50px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            animation: fadeInText 2s ease-in-out 1s forwards;
+        }
+
+        .achievements-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .achievement {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.4s;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 30%;
+            min-width: 250px;
+        }
+
+        .achievement:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .achievement img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 15px;
+        }
+
+        .achievement h3 {
+            font-size: 22px;
+            color: #FFD700;
+        }
+
+        .achievement p {
+            font-size: 16px;
+            color: #f7f7f7;
+        }
+
+        /* Team Section */
+        .team-section {
+            margin-top: 50px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            animation: fadeInText 2s ease-in-out 1s forwards;
+        }
+
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .team-member {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            transition: 0.4s;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .team-member img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 22px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .team-member p {
+            font-size: 16px;
+            color: #f7f7f7;
+        }
+
+        /* Call-to-Action Section */
+        .cta-section {
+            margin-top: 50px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            animation: fadeInText 2s ease-in-out 1s forwards;
+        }
+
+        .cta-section h2 {
+            font-size: 30px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: #FFD700;
+            color: #000;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px 0;
+            font-size: 18px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li> <a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('search') }}">Search</a></li>
+            <li><a href="{{ url_for('compare') }}">Compare</a></li>
+            <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+    </nav>
+    
+    <!-- About Section -->
+    <section class="about-section">
+        <h1 class="about-title">About Agrivance</h1>
+
+        <p class="about-text">
+            Agrivance is an innovative platform designed to provide real-time crop price monitoring and market analysis.
+            We empower farmers and traders with the insights they need to make informed decisions, ensuring **transparency, efficiency, and profitability**.
+        </p>
+    </section>
+
+    <!-- Problem Statement Section -->
+    <div class="problem-section">
+        <h2>🌾 Problem Statement</h2>
+        <p>
+            Farmers, traders, and consumers often struggle to access accurate and real-time crop prices, leading to unfair pricing and poor decision-making. The lack of transparency in agricultural markets can result in exploitation and inefficiencies within the supply chain.
+        </p>
+    </div>
+
+    <!-- Mission & Vision Section -->
+    <div class="mission-vision">
+        <div class="mission">
+            <h2>🌱 Our Mission</h2>
+            <p>To revolutionize the agricultural market by providing real-time data, enhancing transparency, and empowering farmers with valuable insights for better decision-making.</p>
+        </div>
+        <div class="vision">
+            <h2>🌍 Our Vision</h2>
+            <p>To create a world where every farmer and trader has access to accurate market data, ensuring fair pricing and a sustainable future for agriculture.</p>
+        </div>
+    </div>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2>🌟 Testimonials</h2>
+        <div class="testimonials-container">
+            <div class="testimonial">
+                <p>"Agrivance has transformed the way I do business. The real-time data is a game-changer!"</p>
+                <h4>- Farmer from Telangana</h4>
+            </div>
+            <div class="testimonial">
+                
+                <p>"I can now make informed decisions thanks to Agrivance. Highly recommended!"</p>
+                <h4>- Trader from Telangana</h4>
+            </div>
+            <div class="testimonial">
+                
+                <p>"The platform is user-friendly and provides accurate data. A must-have for farmers!"</p>
+                <h4>- Farmer from Telangana</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="achievements-section">
+        <h2>🏆 Achievements</h2>
+        <div class="achievements-container">
+            <div class="achievement">
+                
+                <h3>15,000+ Users</h3>
+                <p>Farmers and traders trust Agrivance for real-time data.</p>
+            </div>
+            <div class="achievement">
+                
+                <h3>100+ Markets Covered</h3>
+                <p>Expanding across major agricultural markets in India.</p>
+            </div>
+            <div class="achievement">
+                
+                <h3>90+% Accuracy</h3>
+                <p>Verified and reliable data for better decision-making.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <h2>👥 Our Team</h2>
+        <div class="team-container">
+            <div class="team-member">
+                <h3>Team Member-1</h3>
+                <h3>Bharath Reddy</h3>
+                <p>Email: rama******@gmail.com</p>
+            </div>
+            <div class="team-member">
+                <h3>Team Member-2</h3>
+                <h3>Damodhar</h3>
+                <p>Email: dam***@gmail.com</p>
+            </div>
+            <div class="team-member">
+                <h3>Team Member-3</h3>
+                <h3>Ashwith Goud</h3>
+                <p>Email: ash***@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta-section">
+        <h2>🚀 Join the Agrivance Community</h2>
+        <p>Be part of the revolution in agriculture. Sign up today and start making smarter decisions!</p>
+        <a href="#" class="cta-button">Sign Up Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Agrivance. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@agrivance.com">info@agrivance.com</a></p>
+        <p>Follow us on:</p>
+        <div class="social-links">
+            <a href="#" target="_blank">📘</a> 
+            <a href="#" target="_blank">🐦</a> 
+            <a href="#" target="_blank">📸</a> 
+        </div>
+    </footer>
+
+</body>
+</html>

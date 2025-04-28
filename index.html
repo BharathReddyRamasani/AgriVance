@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agrivance - Agri Field Rate Monitoring System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        body {
+            background: linear-gradient(45deg, #3a7bd5, #3a6073, #5c4f4f, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+        }
+
+        @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .header img {
+            width: 150px;
+            height: auto;
+            border-radius: 50px;
+            margin-right: 20px;
+        }
+
+        .header h1 {
+            font-size: 48px;
+            color: #07ef54;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Tagline Section */
+        .tagline-section {
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .tagline {
+            font-size: 28px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .tagline span {
+            display: inline-block;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: 2px solid #FFD700;
+            animation: typing 3s steps(30, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #FFD700; }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1a2a6c;
+            background: #FFD700;
+            border-radius: 98px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .cta-button:hover {
+            background: #fff;
+            color: #1a2a6c;
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Navigation Bar */
+        nav {
+            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.5);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: #FFD700;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.3);
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        /* About Agrivance Section */
+        .about-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            margin: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .about-content {
+            width: 50%;
+            padding: 20px;
+            text-align: left;
+            animation: fadeInLeft 1.5s ease-out;
+        }
+
+        .about-content h2 {
+            font-size: 36px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .about-content p {
+            font-size: 18px;
+            color: #f7f7f7;
+            line-height: 1.8;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            transition: color 0.3s ease-in-out;
+        }
+
+        .about-content p:hover {
+            color: #FFD700; 
+        }
+
+        /* Image Slider Integrated into About Section */
+        .about-image-slider {
+            width: 45%; 
+            height: 300px; 
+            overflow: hidden;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Slider Container */
+        .slider-container {
+            display: flex;
+            width: 1100%; 
+            height: 100%; 
+            animation: slide 55s infinite; 
+        }
+
+        /* Individual Images */
+        .slider-container img {
+            width: 9.09%; 
+            height: 100%; 
+            object-fit: cover; 
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .slider-container img:hover {
+            transform: scale(1.05); 
+        }
+
+        /* Keyframes for Slider Animation */
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            9.09% { transform: translateX(0); } 
+            18.18% { transform: translateX(-9.09%); } 
+            27.27% { transform: translateX(-18.18%); } 
+            36.36% { transform: translateX(-27.27%); } 
+            45.45% { transform: translateX(-36.36%); } 
+            54.54% { transform: translateX(-45.45%); } 
+            63.63% { transform: translateX(-54.54%); } 
+            72.72% { transform: translateX(-63.63%); } 
+            81.81% { transform: translateX(-72.72%); } 
+            90.90% { transform: translateX(-81.81%); } 
+            100% { transform: translateX(-90.90%); } 
+        }
+
+        /* Features Section */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            margin: 20px;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.5s ease-in-out;
+            text-align: center;
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .content-card h3 {
+            font-size: 24px;
+            color: #FFD700;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+        }
+
+        .content-card p {
+            font-size: 16px;
+            color: #f7f7f7;
+            line-height: 1.6;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Stats Section */
+        .stats-container {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .stats-container .stat {
+            display: inline-block;
+            width: 30%;
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 30px;
+            font-weight: bold;
+            color: #FFD700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .stats-container .stat:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Testimonials Section */
+        .testimonials-container {
+            padding: 60px 20px;
+            background: #2f3b52;
+        }
+
+        .testimonials-container h2 {
+            font-size: 36px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .testimonial {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #f7f7f7;
+        }
+
+        .testimonial p {
+            font-size: 16px;
+            color: #f7f7f7;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .testimonial h4 {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 20px;
+            margin: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            color: #FFD700;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: #f7f7f7;
+            margin-bottom: 20px;
+        }
+
+        /* Latest News Section */
+        .latest-news {
+            padding: 60px 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            margin: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .news-card h4 {
+            font-size: 20px;
+            color: #FFD700;
+        }
+
+        .news-card p {
+            color: #f7f7f7;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px 0;
+            font-size: 18px;
+            letter-spacing: 1px;
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-section {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-content, .about-image-slider {
+                width: 100%;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr; 
+            }
+
+            .stats-container .stat {
+                width: 100%; 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <div class="header">
+        <img src="/static/projectlogo.png" alt="Agrivance Logo">
+        <h1>Agrivance - Agri Field Rate Monitoring System</h1>
+    </div>
+
+    <!-- Tagline Section -->
+    <section class="tagline-section">
+        <div class="tagline">
+            <span>Empowering Farmers with Real-Time Crop Price Data</span>
+        </div>
+        <a href="#features" class="cta-button">Explore Features</a>
+    </section>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('search') }}">Search</a></li>
+            <li><a href="{{ url_for('compare') }}">Compare</a></li>         
+            <li><a href="{{ url_for('about') }}">About</a></li>
+        </ul>
+    </nav>
+    
+    <!-- About Agrivance Section with Image Slider -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>About Agrivance</h2>
+            <p>
+                Agrivance is a cutting-edge agricultural rate monitoring system designed to empower farmers and traders with real-time crop price data. Our platform provides accurate and up-to-date information, enabling users to make informed decisions and maximize their profits.
+            </p>
+            <p>
+                With Agrivance, you can compare prices across multiple markets, track trends, and access actionable insights to stay ahead in the competitive agricultural industry.
+            </p>
+        </div>
+        <div class="about-image-slider">
+            <div class="slider-container">
+                <img src="https://www.slideegg.com/image/multi-slide/13535/71898-agriculture-powerpoint-templates-01.png" alt="Image 1">
+                <img src="https://img-cdn.krishijagran.com/100307/digital-agriculture-mission.jpg" alt="Image 2">
+                <img src="https://assets.weforum.org/article/image/responsive_large_GA8VNP2I6YbZ_S-WqfOegwL4LJvhQ3CakkfJBOJOEJY.jpg" alt="Image 3">
+                <img src="https://d1g9yur4m4naub.cloudfront.net/images/Article_Images/ImageForArticle_757_1646406361936784.jpg" alt="Image 4">
+                <img src="https://www.shutterstock.com/image-photo/lush-rice-paddy-field-neat-600nw-2499404003.jpg" alt="Image 5">
+                <img src="https://previews.123rf.com/images/biletskiy/biletskiy1403/biletskiy140300012/28530694-agricultural-landscape.jpg" alt="Image 6">
+                <img src="https://indiaforensic.com/certifications/wp-content/uploads/2017/01/agriculture.jpg" alt="Image 7">
+                <img src="https://iotechworld.com/wp-content/uploads/2024/08/green-field-tree-blue-skygreat-as-backgroundweb-banner-generative-ai-2.webp" alt="Image 8">
+                <img src="https://igrownews.com/wp-content/uploads/2023/12/2f4d6b5d-a3fd-485e-a799-54799efd73f7_1792x1024.webp" alt="Image 9">
+                <img src="https://t4.ftcdn.net/jpg/02/70/12/65/360_F_270126543_Fpjy5Y3I0JHGOazU5UxKZxG3hMXv7ixC.jpg" alt="Image 10">
+                <img src="https://www.cyient.com/hubfs/Whitepaper-banner%20%282%29.png" alt="Image 11">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="content-grid">
+        <div class="content-card">
+            <h3>🚜 Empower Your Farm with Data</h3>
+            <p>Unlock the power of real-time crop prices and market data. Make smarter decisions with our easy-to-use platform designed specifically for farmers and traders.</p>
+        </div>
+        <div class="content-card">
+            <h3>🌱 Maximize Profits, Minimize Risks</h3>
+            <p>Compare crop prices across regions instantly, ensuring you're always getting the best deals. Protect your business from market fluctuations with accurate insights.</p>
+        </div>
+        <div class="content-card">
+            <h3>📈 Data-Driven Decisions, Always</h3>
+            <p>Stay ahead of market trends with precise and up-to-date price forecasts. With Agrivance, you get a comprehensive view of the market, allowing you to make well-informed choices.</p>
+        </div>
+        <div class="content-card">
+            <h3>✅ Trust the Experts</h3>
+            <p>We’re committed to providing reliable, transparent, and actionable data, so you can trade with confidence. Our data comes from trusted sources, helping you stay informed and competitive.</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-container">
+        <div class="stat">500+ Crops Monitored</div>
+        <div class="stat">100+ Markets Covered</div>
+        <div class="stat">24/7 Real-Time Data</div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-container">
+        <h2>Why Choose Agrivance?</h2>
+        <div class="testimonial">
+            <p>"Agrivance provides crucial insights into crop prices and trends, empowering us to make smart, data-driven decisions every day. It's the most effective tool for anyone involved in agriculture!"</p>
+        </div>
+        <div class="testimonial">
+            <p>"With real-time pricing data and the ability to compare different markets, Agrivance has saved me time and money. I can now navigate the complex agricultural markets with confidence!"</p>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="cta-section">
+        <h2>Join Us Today!</h2>
+        <p>Sign up now to start benefiting from real-time crop price data and market insights.</p>
+        <a href="#features" class="cta-button">Get Started</a>
+    </section>
+
+    <!-- Latest News Section -->
+    <section class="latest-news">
+        <h2>Latest News</h2>
+        <div class="news-card">
+            <h4>New Features Launched!</h4>
+            <p>We have introduced new features to enhance your experience. Check them out!</p>
+        </div>
+        <div class="news-card">
+            <h4>Market Trends Report</h4>
+            <p>Our latest report on market trends is now available. Stay informed!</p>
+        </div>
+        <div class="news-card">
+            <h4>Webinar on Crop Pricing</h4>
+            <p>Join our upcoming webinar to learn more about crop pricing strategies.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Agrivance. All rights reserved.</p>
+        <p>Contact us: <a href="mailto:info@agrivance.com">info@agrivance.com</a></p>
+        <p>Follow us on:</p>
+        <div class="social-links">
+            <a href="#" target="_blank">📘</a> 
+            <a href="#" target="_blank">🐦</a> 
+            <a href="#" target="_blank">📸</a> 
+        </div>
+    </footer>
+
+</body>
+</html>
